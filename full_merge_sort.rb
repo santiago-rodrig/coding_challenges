@@ -1,37 +1,48 @@
 class MergeSortCollection
+  # receives an array, by default it is nor sorted
   def initialize(array, sorted=false)
     @collection = array
     @sorted = sorted
+    # get its median
     median = @collection.size / 2
+    # divide the array in two parts
     @left_half = @collection[0...median]
     @right_half = @collection[median...@collection.size]
-    # creating the collection
   end
 
+  # sorts the collection in place
   def sort!
-    # sorting the collection
+    # return if the collection is sorted
     return if @sorted
 
+    # after the procedure, the collection is sorted
     @sorted = true
 
+    # it is the same collection if the collection
+    # only has one element
     if @collection.size == 1
       return self
     else
+      # the left half sorted and as an array
       @left_half = MergeSortCollection.new(@left_half).sort!.to_a
+      # the right half sorted and as an array
       @right_half = MergeSortCollection.new(@right_half).sort!.to_a
+      # merge the two sorted halves
       @collection = merge(@left_half, @right_half)
-      # change the @collection to be sorted
     end
 
+    # return the collection itself
     self
   end
 
   def to_a
+    # returns the collection
     @collection
   end
 
   private
 
+  # merge sort algorithm
   def merge(left_half, right_half)
     sorted = []
     number_of_items = left_half.size + right_half.size
@@ -57,11 +68,12 @@ class MergeSortCollection
 
     sorted
   end
-
 end
 
+# sorts an array by number
 def full_merge_sort(array)
   MergeSortCollection.new(array).sort!.to_a.map do |data|
+    # fetch the letters, not the numbers
     data.match(/\A(\d+)\s(.+)\Z/)[2]
   end
 end
