@@ -1,3 +1,4 @@
+# https://leetcode.com/problems/3sum/
 require 'set'
 
 def three_sum(nums)
