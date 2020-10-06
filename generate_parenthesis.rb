@@ -1,3 +1,5 @@
+# challenge: https://leetcode.com/problems/generate-parentheses/
+
 # @param {Integer} n
 # @return {String[]}
 def generate_parenthesis(n)
